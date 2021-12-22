@@ -1,21 +1,11 @@
 import { REST } from '@discordjs/rest'
 import { Routes } from 'discord-api-types/v9'
-import {
-  Client,
-  Collection,
-  GuildMember,
-  Interaction,
-  Message,
-  MessageEmbed,
-  PermissionString,
-} from 'discord.js'
+import { Client, Collection, GuildMember, Interaction, Message, MessageEmbed, PermissionString } from 'discord.js'
 import { readdirSync } from 'fs'
 import db from 'quick.db'
 
 import { CommandProps } from './commands'
 import { BotEvent } from './events'
-
-// betterLogging(console)
 
 const commands = './build/commands'
 const events = './build/events'
@@ -358,7 +348,7 @@ export function helpMain() {
     .setColor('BLURPLE')
     .setTitle('Help')
     .setDescription(
-      `Use \`${globalPrefix}help <category/category>\` to find help of a command/category`
+      `Use \`${globalPrefix}help <command/category>\` to find help of a command/category`
     )
 
   categoryMap.forEach((val, key) => {

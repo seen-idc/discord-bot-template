@@ -54,12 +54,12 @@ export function commandDeprecated(
       if (!interaction.isCommand()) return
 
       interaction.reply(
-        `This command is deprecated. ${altCommands ? `Use \`${altCommands}\`` : ''}`
+        `This command is deprecated. ${altCommands ? `\`Use ${altCommands}\`` : ''}`
       )
     }
   } else {
     return async function deprecated(client: Client, message: Message, args: string[]) {
-      message.reply(`This command is deprecated. ${altCommands ? `Use \`${altCommands}\`` : ''}`)
+      message.reply(`This command is deprecated. ${altCommands ? `\`Use ${altCommands}\`` : ''}`)
     }
   }
 }
