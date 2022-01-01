@@ -83,9 +83,9 @@ export async function handleMessageCommand(client: Client, message: Message) {
       commandProps
         .run(client, message, args)
         .catch((e) => message.reply({ embeds: [commandError(e)] }))
+        // Set it to the time when the cooldown expires
+        .then(() => db.set(cooldownKey, Date.now() + (commandProps as CommandProps).cooldown * 1000))
 
-      // Set it to the time when the cooldown expires
-      db.set(cooldownKey, Date.now() + commandProps.cooldown * 1000)
     } else if (currentTimestamp <= cooldownTimestamp) {
       let timeRemaining = cooldownTimestamp - currentTimestamp
 
@@ -126,8 +126,8 @@ export async function handleMessageCommand(client: Client, message: Message) {
     commandProps
       .run(client, message, args)
       .catch((e) => message.reply({ embeds: [commandError(e)] }))
-    // Set it to the time when the cooldown expires
-    db.set(cooldownKey, Date.now() + commandProps.cooldown * 1000)
+      // Set it to the time when the cooldown expires
+      .then(() => db.set(cooldownKey, Date.now() + (commandProps as CommandProps).cooldown * 1000))
   }
 }
 
@@ -366,7 +366,7 @@ export function helpMain() {
     )
 
   categoryMap.forEach((val, key) => {
-    let preview = `\`${val.slice(0, 3).join('` `')}\`...`
+    let preview = `\`${val.join('` `')}\``
 
     embed.addField(capitalizeFirstLetter(key), preview)
   })
