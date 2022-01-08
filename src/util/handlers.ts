@@ -1,6 +1,14 @@
 import { REST } from '@discordjs/rest'
 import { Routes } from 'discord-api-types/v9'
-import { Client, Collection, GuildMember, Interaction, Message, MessageEmbed, PermissionString } from 'discord.js'
+import {
+  Client,
+  Collection,
+  GuildMember,
+  Interaction,
+  Message,
+  MessageEmbed,
+  PermissionString,
+} from 'discord.js'
 import { readdirSync } from 'fs'
 import db from 'quick.db'
 
@@ -74,8 +82,9 @@ export async function handleMessageCommand(client: Client, message: Message) {
         .run(client, message, args)
         .catch((e) => message.reply({ embeds: [commandError(e)] }))
         // Set it to the time when the cooldown expires
-        .then(() => db.set(cooldownKey, Date.now() + (commandProps as CommandProps).cooldown * 1000))
-
+        .then(() =>
+          db.set(cooldownKey, Date.now() + (commandProps as CommandProps).cooldown * 1000)
+        )
     } else if (currentTimestamp <= cooldownTimestamp) {
       let timeRemaining = cooldownTimestamp - currentTimestamp
 
