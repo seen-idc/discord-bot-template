@@ -19,7 +19,6 @@ Simple typescript discord bot template, includes support for slash commands and 
 TOKEN=TOKEN
 PREFIX=PREFIX
 CLIENT_ID=ID
-CLIENT_SECRET=SECRET
 ```
 
 3. Run `npm start` to format, build and then start the bot.
