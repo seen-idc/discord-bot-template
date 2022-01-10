@@ -332,11 +332,11 @@ export function helpForCategory(catStr: string) {
       .setColor('GREEN')
       .setTitle(`Help for command: ${cat}`)
       .setDescription(
-        `**Description:** ${commandProps?.description}\n**Category:** ${
-          commandProps?.category
-        }\n**Usage:** \`${`${commandProps?.commandPreference == 'slash' ? '/' : globalPrefix}${
-          commandProps?.name
-        } ${commandProps?.usage.trim()}`.trim()}\`\n**Aliases:** ${
+        `**Cooldown:** \`${commandProps?.cooldown}\` seconds\n**Description:** ${
+          commandProps?.description
+        }\n**Category:** ${commandProps?.category}\n**Usage:** \`${`${
+          commandProps?.commandPreference == 'slash' ? '/' : globalPrefix
+        }${commandProps?.name} ${commandProps?.usage.trim()}`.trim()}\`\n**Aliases:** ${
           commandProps?.aliases ? commandProps?.aliases?.join(' ') : 'None'
         }`
       )
